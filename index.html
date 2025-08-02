@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia360 - Shopping Guararapes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">
+                <i class="fas fa-compass"></i>
+                Guia360
+            </h1>
+            <button class="help-btn" aria-label="Solicitar ajuda">
+                <i class="fas fa-question-circle"></i>
+                Ajuda
+            </button>
+        </div>
+    </header>
+    <main class="main-content">
+        
+        <section class="voice-section">
+            <div class="voice-container">
+                <div class="voice-status">
+                    <div class="voice-indicator" id="voiceIndicator">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <p class="voice-text" id="voiceText">Toque para falar</p>
+                </div>
+                <button class="voice-btn" id="voiceBtn" aria-label="Ativar comandos de voz">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </section>
+        <section class="quick-actions">
+            <h2>Ações Rápidas</h2>
+            <div class="action-grid">
+                <button class="action-btn" data-action="bathroom">
+                    <i class="fas fa-restroom"></i>
+                    <span>Banheiro</span>
+                </button>
+                <button class="action-btn" data-action="parking">
+                    <i class="fas fa-parking"></i>
+                    <span>Estacionamento</span>
+                </button>
+                <button class="action-btn" data-action="exit">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Saída</span>
+                </button>
+                <button class="action-btn" data-action="food">
+                    <i class="fas fa-utensils"></i>
+                    <span>Alimentação</span>
+                </button>
+            </div>
+        </section>
+        <section class="navigation-section">
+            <h2>Navegação</h2>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Onde você quer ir?" class="search-input">
+                <button class="search-btn" aria-label="Buscar">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="route-options">
+                <h3>Preferências de Rota</h3>
+                <div class="route-toggles">
+                                         <label class="toggle-label">
+                         <input type="checkbox" id="avoidCrowds" checked>
+                         <span class="toggle-slider"></span>
+                         Evitar áreas lotadas
+                     </label>
+                    <label class="toggle-label">
+                        <input type="checkbox" id="accessibleRoute" checked>
+                        <span class="toggle-slider"></span>
+                        Rota acessível
+                    </label>
+                </div>
+            </div>
+        </section>
+        <section class="location-section">
+            <h2>Sua Localização</h2>
+            <div class="location-info">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-details">
+                    <p class="location-text" id="currentLocation">Detectando sua localização...</p>
+                    <p class="location-description" id="locationDescription">Aguarde enquanto calculamos sua posição</p>
+                </div>
+            </div>
+        </section>
+        <section class="route-section" id="routeSection" style="display: none;">
+            <h2>Rota Sugerida</h2>
+            <div class="route-info">
+                <div class="route-steps" id="routeSteps">
+                    
+                </div>
+                <div class="route-actions">
+                    <button class="route-btn start-btn" id="startRoute">
+                        <i class="fas fa-play"></i>
+                        Iniciar Navegação
+                    </button>
+                    <button class="route-btn cancel-btn" id="cancelRoute">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Precisa de Ajuda?</h2>
+                            <button class="close-btn" id="closeHelpModal" aria-label="Fechar" onclick="document.getElementById('helpModal').classList.remove('active')">
+                <i class="fas fa-times"></i>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p>Um funcionário treinado será notificado e chegará em breve para ajudá-lo.</p>
+                <div class="help-options">
+                    <button class="help-option" data-help="navigation">
+                        <i class="fas fa-route"></i>
+                        Ajuda com Navegação
+                    </button>
+                    <button class="help-option" data-help="emergency">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Emergência
+                    </button>
+                    <button class="help-option" data-help="general">
+                        <i class="fas fa-info-circle"></i>
+                        Informações Gerais
+                    </button>
+                </div>
+                <div class="help-status">
+                    <p id="helpStatus">Solicitação enviada. Aguarde...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="voice-feedback" id="voiceFeedback">
+        <div class="feedback-content">
+            <i class="fas fa-volume-up"></i>
+            <span id="feedbackText">Processando comando de voz...</span>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
