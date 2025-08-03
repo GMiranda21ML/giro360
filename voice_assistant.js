@@ -134,13 +134,60 @@ class VoiceAssistant {
         } else if (command.includes('outras') || command.includes('funcionalidades')) {
             alert('Funcionalidade em desenvolvimento');
         } else {
-            // Aqui você pode implementar a lógica para processar outros comandos
-            alert(`Comando recebido: ${command}\nEm desenvolvimento.`);
+            // Navegar para a página de rota com o destino mencionado
+            this.navigateToRoute(command);
         }
     }
 
     showHelp() {
         alert('Assistente de Voz Guia360\n\nComandos disponíveis:\n- "Ajuda": Mostra esta mensagem\n- "Voltar" ou "Retornar": Volta para a página inicial\n- "Outras funcionalidades": Mostra outras opções\n\nVocê também pode perguntar sobre locais no shopping ou solicitar direções.');
+    }
+    
+    navigateToRoute(command) {
+        // Extrair possível destino do comando
+        let destination = 'Centauro'; // Destino padrão
+        
+        // Lista de lojas conhecidas
+        const knownStores = [
+            'Centauro', 'Renner', 'Riachuelo', 'C&A', 'Americanas', 
+            'Saraiva', 'Casas Bahia', 'Polishop', 'Boticário', 'Vivara',
+            'McDonalds', 'Burger King', 'Cinema', 'Praça de alimentação'
+        ];
+        
+        // Verificar se alguma loja conhecida foi mencionada
+        for (const store of knownStores) {
+            if (command.includes(store.toLowerCase())) {
+                destination = store;
+                break;
+            }
+        }
+        
+        // Verificar palavras-chave comuns para navegação
+        const navigationKeywords = ['ir para', 'como chegar', 'me leve', 'onde fica', 'localizar'];
+        let isNavigationRequest = false;
+        
+        for (const keyword of navigationKeywords) {
+            if (command.includes(keyword)) {
+                isNavigationRequest = true;
+                break;
+            }
+        }
+        
+        // Se não for um pedido de navegação explícito, confirmar com o usuário
+        if (!isNavigationRequest) {
+            const confirmNavigation = confirm(`Deseja traçar uma rota para ${destination}?`);
+            if (!confirmNavigation) {
+                return;
+            }
+        }
+        
+        // Mostrar indicador de carregamento
+        this.showLoading();
+        
+        // Navegar para a página de rota com o destino
+        setTimeout(() => {
+            window.location.href = `route.html?destination=${encodeURIComponent(destination)}`;
+        }, 500);
     }
 
     showLoading() {

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#1e3a8a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Guia360">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="description" content="Guia360 - Navegação inteligente no Shopping Guararapes">
+    <meta name="keywords" content="shopping, guararapes, navegação, acessibilidade, guia360">
+    <meta name="author" content="Guia360">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    
+    <title>Guia360 - Rota Traçada</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="header" role="banner">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="img/logo.png" alt="Guia360 Logo" class="logo-image" id="logoImage">
+                </div>
+                <div class="logo-section">
+                    <img src="img/guara.png" alt="Guia360 Logo" class="logo-image-shopping" id="logoImage">
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Section -->
+        <main class="main-content" role="main">
+            <div class="route-container">
+                <h1 class="route-title">
+                    Rota traçada até: <span class="destination">Centauro</span>
+                </h1>
+                <p class="route-instructions">
+                    Acompanhe as instruções
+                </p>
+                
+                <div class="map-container">
+                    <div class="map-content" id="mapContent">
+                        <!-- O mapa será renderizado aqui -->
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <a href="voice_assistant.html" class="nav-button" id="returnBtn">Retornar</a>
+                </div>
+                
+                <div class="help-section">
+                    <a href="#" class="help-button" id="helpBtn">
+                        <i class="fas fa-question-circle"></i>
+                        Ajuda
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading indicator -->
+    <div class="loading-indicator" id="loadingIndicator" aria-hidden="true">
+        <div class="loading-spinner"></div>
+        <p>Carregando...</p>
+    </div>
+
+    <script src="route.js"></script>
+</body>
+</html>
