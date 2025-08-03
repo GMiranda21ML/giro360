@@ -478,6 +478,9 @@ body {
 
 .help-section {
     margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .help-button {

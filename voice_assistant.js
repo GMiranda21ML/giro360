@@ -2,42 +2,34 @@ class VoiceAssistant {
     constructor() {
         this.isListening = false;
         this.recognition = null;
+        this.initializeSpeechRecognition();
         this.initializeElements();
         this.initializeEventListeners();
-        this.initializeSpeechRecognition();
     }
 
     initializeElements() {
         this.micButton = document.getElementById('micButton');
-        this.otherFeaturesBtn = document.getElementById('otherFeaturesBtn');
-        this.returnBtn = document.getElementById('returnBtn');
-        this.helpBtn = document.getElementById('helpBtn');
+        this.voiceTitle = document.getElementById('voiceTitle');
+        this.voiceInstruction = document.getElementById('voiceInstruction');
+        this.optionsContainer = document.getElementById('optionsContainer');
+        this.helpButton = document.getElementById('helpButton');
         this.loadingIndicator = document.getElementById('loadingIndicator');
     }
 
     initializeEventListeners() {
-        // Botão de microfone
-        this.micButton.addEventListener('click', () => {
-            this.toggleSpeechRecognition();
-        });
+        if (this.micButton) {
+            this.micButton.addEventListener('click', () => {
+                this.toggleListening(!this.isListening);
+            });
+        }
 
-        // Outros botões
-        this.otherFeaturesBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.showLoading();
-            // Aqui você pode adicionar a navegação para a página de outras funcionalidades
-            setTimeout(() => {
-                this.hideLoading();
-                alert('Funcionalidade em desenvolvimento');
-            }, 500);
-        });
+        if (this.helpButton) {
+            this.helpButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showHelp();
+            });
+        }
 
-        this.helpBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.showHelp();
-        });
-
-        // Feedback tátil para botões
         document.addEventListener('focusin', (e) => {
             if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
                 this.vibrate([50]);
@@ -53,73 +45,43 @@ class VoiceAssistant {
             this.recognition.continuous = false;
             this.recognition.interimResults = false;
 
-            this.recognition.onstart = () => {
-                this.isListening = true;
-                this.updateMicButtonState();
-                console.log('Reconhecimento de voz iniciado');
-            };
-
-            this.recognition.onend = () => {
-                this.isListening = false;
-                this.updateMicButtonState();
-                console.log('Reconhecimento de voz finalizado');
-            };
-
             this.recognition.onresult = (event) => {
                 const transcript = event.results[0][0].transcript;
-                console.log('Você disse: ' + transcript);
                 this.processVoiceCommand(transcript);
             };
 
             this.recognition.onerror = (event) => {
-                console.error('Erro no reconhecimento de voz: ' + event.error);
-                this.isListening = false;
-                this.updateMicButtonState();
+                console.error('Erro no reconhecimento de voz:', event.error);
+                this.toggleListening(false);
+            };
+
+            this.recognition.onend = () => {
+                if (this.isListening) {
+                    this.toggleListening(false);
+                }
             };
         } else {
-            console.error('Reconhecimento de voz não suportado neste navegador');
-            this.micButton.disabled = true;
-            this.micButton.title = 'Reconhecimento de voz não suportado';
+            alert('Seu navegador não suporta reconhecimento de voz. Por favor, use um navegador mais recente.');
         }
     }
 
-    toggleSpeechRecognition() {
-        if (this.isListening) {
-            this.stopListening();
-        } else {
-            this.startListening();
-        }
-        // Feedback tátil
-        this.vibrate([100]);
-    }
-
-    startListening() {
-        if (this.recognition) {
-            try {
-                this.recognition.start();
-            } catch (error) {
-                console.error('Erro ao iniciar reconhecimento: ' + error);
-            }
-        }
-    }
-
-    stopListening() {
-        if (this.recognition) {
-            try {
-                this.recognition.stop();
-            } catch (error) {
-                console.error('Erro ao parar reconhecimento: ' + error);
-            }
-        }
-    }
-
-    updateMicButtonState() {
-        if (this.isListening) {
+    toggleListening(start) {
+        this.isListening = start;
+        
+        if (start) {
+            this.recognition.start();
             this.micButton.classList.add('listening');
-            this.micButton.style.backgroundColor = '#ef4444';
+            this.voiceInstruction.textContent = 'Ouvindo... Fale o nome da loja ou local';
+            this.vibrate([100, 50, 100]);
         } else {
+            if (this.recognition) {
+                try {
+                    this.recognition.stop();
+                } catch (e) {
+                }
+            }
             this.micButton.classList.remove('listening');
-            this.micButton.style.backgroundColor = '#EEEEEE';
+            this.voiceInstruction.textContent = 'Toque no microfone e fale o nome da loja ou local';
         }
     }
 
