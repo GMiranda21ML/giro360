@@ -7,7 +7,7 @@
 
 :root {
     --header-bg: #f8f9fa;
-    --main-bg: #1e3a8a;
+    --main-bg: #111B30;
     --text-white: #ffffff;
     --text-dark: #1f2937;
     --text-secondary: #6b7280;
@@ -114,7 +114,7 @@ body {
 
 /* Header Section */
 .header {
-    background: var(--header-bg);
+    background: #EEEEEE;
     padding: var(--spacing-lg) var(--spacing-xl);
     flex-shrink: 0;
     /* Safe area support */
@@ -146,57 +146,17 @@ body {
 .shopping-logo-section {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
 }
 
-.shopping-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--shopping-purple);
+/* .shopping-icon {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
+} */
 
-.shopping-symbol {
-    color: var(--text-white);
-    font-weight: 700;
-    font-size: 1.2rem;
-    position: relative;
-    z-index: 2;
-}
 
-.shopping-icon::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, var(--shopping-purple) 0%, var(--shopping-purple) 70%, var(--shopping-orange) 70%, var(--shopping-orange) 100%);
-    border-radius: 8px;
-}
 
-.shopping-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.2;
-}
-
-.shopping-label {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-}
-
-.shopping-name {
-    font-size: 1.1rem;
-    color: var(--text-dark);
-    font-weight: 700;
-}
 
 /* Main Content Section */
 .main-content {
@@ -246,7 +206,7 @@ body {
 }
 
 .accessibility-btn {
-    background: var(--button-bg);
+    background: #EEEEEE;
     border: none;
     border-radius: var(--border-radius);
     padding: var(--spacing-xl);
@@ -290,7 +250,7 @@ body {
 .btn-text {
     font-size: 1rem;
     font-weight: 700;
-    color: var(--button-text);
+    color: #000000;
     text-align: center;
 }
 
