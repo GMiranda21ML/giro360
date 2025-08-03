@@ -12,8 +12,10 @@
     <meta name="keywords" content="shopping, guararapes, navegação, acessibilidade, guia360">
     <meta name="author" content="Guia360">
     
+    <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     
+    <!-- Icons -->
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -25,6 +27,7 @@
 </head>
 <body>
     <div class="app-container">
+        <!-- Header Section -->
         <header class="header" role="banner">
             <div class="header-content">
                 <div class="logo-section">
@@ -36,6 +39,7 @@
             </div>
         </header>
 
+        <!-- Main Content Section -->
         <main class="main-content" role="main">
             <div class="welcome-section">
                 <h1 class="welcome-title">
@@ -65,15 +69,9 @@
                 
             </div>
         </main>
-        
-        <div class="help-section">
-            <a href="#" class="help-button" id="helpBtn">
-                <i class="fas fa-question-circle"></i>
-                Ajuda
-            </a>
-        </div>
     </div>
 
+    <!-- Loading indicator -->
     <div class="loading-indicator" id="loadingIndicator" aria-hidden="true">
         <div class="loading-spinner"></div>
         <p>Carregando...</p>

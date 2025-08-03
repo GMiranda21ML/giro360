@@ -393,9 +393,10 @@ body {
 }
 
 .voice-assistant-icon {
-    font-size: 3rem;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
     margin-bottom: var(--spacing-lg);
-    color: var(--text-white);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -478,9 +479,6 @@ body {
 
 .help-section {
     margin-top: auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
 }
 
 .help-button {

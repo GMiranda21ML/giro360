@@ -12,10 +12,10 @@ class Guia360 {
         this.voiceAssistantBtn = document.getElementById('voiceAssistantBtn');
         this.logoImage = document.getElementById('logoImage');
         this.loadingIndicator = document.getElementById('loadingIndicator');
-        this.helpBtn = document.getElementById('helpBtn');
     }
 
     initializeEventListeners() {
+        // Botões de acessibilidade
         this.visualImpairmentBtn.addEventListener('click', () => {
             this.selectUserPreference('visual-impairment');
         });
@@ -28,13 +28,7 @@ class Guia360 {
             this.navigateToVoiceAssistant();
         });
 
-        if (this.helpBtn) {
-            this.helpBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.showHelp();
-            });
-        }
-
+        // Feedback tátil para botões
         document.addEventListener('focusin', (e) => {
             if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
                 this.vibrate([50]);
@@ -45,6 +39,7 @@ class Guia360 {
     selectUserPreference(preference) {
         this.userPreference = preference;
         
+        // Feedback visual
         if (preference === 'visual-impairment') {
             this.visualImpairmentBtn.style.transform = 'scale(0.95)';
             setTimeout(() => {
@@ -57,18 +52,23 @@ class Guia360 {
             }, 150);
         }
 
+        // Feedback tátil
         this.vibrate([100, 50, 100]);
         
+        // Navegar para a página apropriada após um breve delay
         setTimeout(() => {
             this.navigateToVoiceAssistant();
         }, 300);
 
+        // Feedback de voz
         this.speak(this.getPreferenceMessage(preference));
     }
 
     navigateToVoiceAssistant() {
+        // Mostrar indicador de carregamento
         this.showLoading();
         
+        // Navegar para a página do assistente de voz após um breve delay
         setTimeout(() => {
             window.location.href = 'voice_assistant.html';
         }, 300);
@@ -119,12 +119,9 @@ class Guia360 {
             navigator.vibrate(pattern);
         }
     }
-    
-    showHelp() {
-        alert('Guia360 - Shopping Guararapes\n\nEste aplicativo ajuda você a se locomover pelo Shopping Guararapes.\n\nSelecione uma das opções na tela inicial para começar:\n- "Possuo deficiência visual": Ativa o modo acessível\n- "Não possuo deficiência visual": Ativa o modo padrão\n\nApós selecionar, você será direcionado ao assistente de voz para solicitar direções.');
-    }
 }
 
+// Inicializar o aplicativo quando o documento estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
     const app = new Guia360();
 });
