@@ -148,12 +148,12 @@ body {
     align-items: center;
 }
 
-/* .shopping-icon {
-    height: 48px;
+.logo-image-shopping {
+    height: 95px;
     width: auto;
     object-fit: contain;
     border-radius: 8px;
-} */
+}
 
 
 
