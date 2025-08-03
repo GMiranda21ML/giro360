@@ -173,9 +173,15 @@ class VoiceAssistant {
             }
         }
         
-        // Se não for um pedido de navegação explícito, confirmar com o usuário
-        if (!isNavigationRequest) {
-            const confirmNavigation = confirm(`Deseja traçar uma rota para ${destination}?`);
+        // Mostrar o comando do usuário e confirmar
+        if (isNavigationRequest) {
+            // Para pedidos explícitos, apenas mostrar brevemente o que foi reconhecido
+            alert(`"${command}"
+
+Traçando rota para ${destination}...`);
+        } else {
+            // Se não for um pedido de navegação explícito, pedir confirmação
+            const confirmNavigation = confirm(`"${command}"\n\nDeseja traçar esta rota?`);
             if (!confirmNavigation) {
                 return;
             }
