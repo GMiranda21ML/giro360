@@ -155,9 +155,6 @@ body {
     border-radius: 8px;
 }
 
-
-
-
 /* Main Content Section */
 .main-content {
     background: var(--main-bg);
@@ -265,6 +262,10 @@ body {
 
 .accessibility-btn.no-impairment .btn-icon {
     color: #10b981;
+}
+
+.accessibility-btn.voice-assistant .btn-icon {
+    color: #3b82f6;
 }
 
 /* Responsive Design */
@@ -378,6 +379,124 @@ body {
     .shopping-name {
         font-size: 1.05rem;
     }
+}
+
+/* Voice Assistant Styles */
+.voice-assistant-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    color: var(--text-white);
+}
+
+.voice-assistant-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.voice-assistant-icon i {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.voice-assistant-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+}
+
+.voice-assistant-instruction {
+    font-size: 1rem;
+    margin-bottom: var(--spacing-xl);
+    opacity: 0.8;
+}
+
+.mic-button {
+    background-color: #EEEEEE;
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #000000;
+    cursor: pointer;
+    margin-bottom: var(--spacing-xl);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mic-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.mic-button:active {
+    transform: scale(0.95);
+}
+
+.additional-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: var(--spacing-xl);
+}
+
+.option-button {
+    background-color: #EEEEEE;
+    color: #000000;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option-button:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.help-section {
+    margin-top: auto;
+}
+
+.help-button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--text-white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.help-button:hover {
+    opacity: 1;
+}
+
+.help-button i {
+    font-size: 1.2rem;
 }
 
 @media (max-width: 400px) {
@@ -664,4 +783,4 @@ body {
         --button-bg: #374151;
         --button-text: #f9fafb;
     }
-} 
+}

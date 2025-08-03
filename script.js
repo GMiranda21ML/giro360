@@ -9,7 +9,9 @@ class Guia360 {
     initializeElements() {
         this.visualImpairmentBtn = document.getElementById('visualImpairmentBtn');
         this.noImpairmentBtn = document.getElementById('noImpairmentBtn');
+        this.voiceAssistantBtn = document.getElementById('voiceAssistantBtn');
         this.logoImage = document.getElementById('logoImage');
+        this.loadingIndicator = document.getElementById('loadingIndicator');
     }
 
     initializeEventListeners() {
@@ -21,10 +23,14 @@ class Guia360 {
         this.noImpairmentBtn.addEventListener('click', () => {
             this.selectUserPreference('no-impairment');
         });
+        
+        this.voiceAssistantBtn.addEventListener('click', () => {
+            this.navigateToVoiceAssistant();
+        });
 
         // Feedback tátil para botões
         document.addEventListener('focusin', (e) => {
-            if (e.target.tagName === 'BUTTON') {
+            if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
                 this.vibrate([50]);
             }
         });
@@ -48,14 +54,36 @@ class Guia360 {
 
         // Feedback tátil
         this.vibrate([100, 50, 100]);
+        
+        // Navegar para a página apropriada após um breve delay
+        setTimeout(() => {
+            this.navigateToVoiceAssistant();
+        }, 300);
 
         // Feedback de voz
         this.speak(this.getPreferenceMessage(preference));
+    }
 
-        // Simular transição para a próxima tela
+    navigateToVoiceAssistant() {
+        // Mostrar indicador de carregamento
+        this.showLoading();
+        
+        // Navegar para a página do assistente de voz após um breve delay
         setTimeout(() => {
-            this.showMainInterface();
-        }, 2000);
+            window.location.href = 'voice_assistant.html';
+        }, 300);
+    }
+    
+    showLoading() {
+        if (this.loadingIndicator) {
+            this.loadingIndicator.classList.add('show');
+        }
+    }
+    
+    hideLoading() {
+        if (this.loadingIndicator) {
+            this.loadingIndicator.classList.remove('show');
+        }
     }
 
     getPreferenceMessage(preference) {
@@ -66,14 +94,6 @@ class Guia360 {
         return messages[preference] || 'Preferência selecionada.';
     }
 
-    showMainInterface() {
-        // Aqui você pode implementar a transição para a interface principal
-        console.log('Transicionando para interface principal com preferência:', this.userPreference);
-        
-        // Por enquanto, apenas mostra uma mensagem
-        this.speak('Carregando interface principal do Guia360...');
-    }
-
     speak(text) {
         if ('speechSynthesis' in window) {
             try {
@@ -81,40 +101,27 @@ class Guia360 {
                 
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'pt-BR';
-                utterance.rate = 0.9;
-                utterance.volume = 0.8;
+                utterance.rate = 1.0;
                 utterance.pitch = 1.0;
-                
-                utterance.onerror = (event) => {
-                    console.error('Erro na síntese de voz:', event.error);
-                };
-                
-                utterance.onend = () => {
-                    console.log('Síntese de voz concluída');
-                };
+                utterance.volume = 1.0;
                 
                 speechSynthesis.speak(utterance);
             } catch (error) {
-                console.error('Erro ao tentar falar:', error);
+                console.error('Erro ao utilizar síntese de voz:', error);
             }
         } else {
             console.warn('Síntese de voz não suportada neste navegador');
         }
     }
 
-    vibrate(pattern = [100]) {
-        if ('vibrate' in navigator) {
+    vibrate(pattern) {
+        if (navigator.vibrate) {
             navigator.vibrate(pattern);
         }
     }
 }
 
-// Inicializar quando o DOM estiver carregado
+// Inicializar o aplicativo quando o documento estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
     const app = new Guia360();
-    
-    // Mensagem de boas-vindas após um pequeno delay
-    setTimeout(() => {
-        app.speak('Bem-vindo ao Guia360. Selecione sua preferência de acessibilidade.');
-    }, 1000);
-}); 
+});

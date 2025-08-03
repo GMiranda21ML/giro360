@@ -20,7 +20,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
     
-    <title>Guia360 - Shopping Guararapes</title>
+    <title>Guia360 - Assistente de Voz</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -41,32 +41,30 @@
 
         <!-- Main Content Section -->
         <main class="main-content" role="main">
-            <div class="welcome-section">
-                <h1 class="welcome-title">
-                    Bem vindo!(a)
-                </h1>
-                <p class="welcome-description">
-                    Guia360 te mostra como se locomover no espaço do Shopping Guararapes, lhe ajudando com direções, rotas personalizadas e dicas de onde encontrar seu item preferido!
-                </p>
-            </div>
-
-            <div class="accessibility-buttons" role="group" aria-label="Opções de acessibilidade">
-                <a href="voice_assistant.html" class="accessibility-btn visual-impairment" id="visualImpairmentBtn" aria-describedby="visual-impairment-desc">
-                    <span class="btn-text">Possuo deficiência visual</span>
-                    <div class="btn-icon" aria-hidden="true">
-                        <i class="fas fa-eye-slash"></i>
-                    </div>
-                    <span id="visual-impairment-desc" class="sr-only">Ativa o modo de acessibilidade para pessoas com deficiência visual</span>
-                </a>
+            <div class="voice-assistant-container">
+                <div class="voice-assistant-icon">
+                    <i class="fas fa-user-headset"></i>
+                </div>
                 
-                <a href="voice_assistant.html" class="accessibility-btn no-impairment" id="noImpairmentBtn" aria-describedby="no-impairment-desc">
-                    <span class="btn-text">Não possuo deficiência visual</span>
-                    <div class="btn-icon" aria-hidden="true">
-                        <i class="fas fa-eye"></i>
-                    </div>
-                    <span id="no-impairment-desc" class="sr-only">Ativa o modo padrão para pessoas sem deficiência visual</span>
-                </a>
+                <h2 class="voice-assistant-title">O que você quer fazer agora?</h2>
                 
+                <p class="voice-assistant-instruction">Pressione o botão abaixo para falar</p>
+                
+                <button class="mic-button" id="micButton" aria-label="Ativar microfone">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                
+                <div class="additional-options">
+                    <a href="#" class="option-button" id="otherFeaturesBtn">Outras funcionalidades</a>
+                    <a href="index.html" class="option-button" id="returnBtn">Retornar</a>
+                </div>
+                
+                <div class="help-section">
+                    <a href="#" class="help-button" id="helpBtn">
+                        <i class="fas fa-question-circle"></i>
+                        Ajuda
+                    </a>
+                </div>
             </div>
         </main>
     </div>
@@ -77,6 +75,6 @@
         <p>Carregando...</p>
     </div>
 
-    <script src="script.js"></script>
+    <script src="voice_assistant.js"></script>
 </body>
 </html>
